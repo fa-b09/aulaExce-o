@@ -1,6 +1,7 @@
 
 package aula.excecao;
 
+import exceptions.businessExceptions;
 import java.util.Locale;
 import java.util.Scanner;
 import model.entities.Account;
@@ -39,15 +40,14 @@ public class AulaExcecao {
         System.out.print("Informe uma quantia para sacar: ");
         double amount = sc.nextDouble();
         
-        String error = acc.validateWithdraw(amount);
-        if(error !=null){
-            System.out.println(error);
-        }
-        else{
+        
+        try{
             acc.withdraw(amount);
             System.out.printf("Novo saldo: %.2f%n", acc.getBalance());
         }
-        
+        catch(businessExceptions e){
+            System.out.print(e.getMessage());
+        }
         sc.close();
     }
     
