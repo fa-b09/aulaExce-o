@@ -39,13 +39,9 @@ public class AulaExcecao {
         System.out.print("Informe uma quantia para sacar: ");
         double amount = sc.nextDouble();
         
-        if(amount > acc.getWithdrawLimit()){
-            System.out.println("Erro de saque: A quantia excede o limite de saue");
-            
-        }
-        else if(amount > acc.getBalance()){
-            System.out.println("Erro de saque: Saldo insuficiente");
-            
+        String error = acc.validateWithdraw(amount);
+        if(error !=null){
+            System.out.println(error);
         }
         else{
             acc.withdraw(amount);
